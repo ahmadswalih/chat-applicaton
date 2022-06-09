@@ -110,7 +110,7 @@ const SignUp = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.pushState("/chats");
+      history.push("/chats");
     } catch (error) {
       toast({
         title: "User Creation failed",

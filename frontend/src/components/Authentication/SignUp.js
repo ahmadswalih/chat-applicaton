@@ -9,6 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [name, setName] = useState();
@@ -20,7 +22,7 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const handleClick = () => setShow(!show);
-
+  const history = useHistory();
   const postDetails = (pics) => {
     setLoading(true);
     if (pics === undefined) {
@@ -65,7 +67,61 @@ const SignUp = () => {
       return;
     }
   };
-  const submitHandler = () => {};
+  const submitHandler = async () => {
+    if (!name || !email || !password) {
+      toast({
+        title: "Please Enter all the fields",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+    if (password === !confirmPassword) {
+      toast({
+        title: "Password doesn't match",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+    try {
+      const config = {
+        Headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/user",
+        { name, email, password, pic },
+        config
+      );
+      toast({
+        title: "Registration Successfull",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      history.pushState("/chats");
+    } catch (error) {
+      toast({
+        title: "User Creation failed",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
   return (
     <VStack>
       <FormControl id="first-name" isRequired>

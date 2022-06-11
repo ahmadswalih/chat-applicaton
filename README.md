@@ -1,6 +1,6 @@
 # CatchUp
 
-CatchUp is chat application built using Node and React Js
+CatchUp is a chat application built using Node and React Js
 
 ## Folder Structure
  The application contains two main folder :-

@@ -25,7 +25,7 @@ const HomePage = () => {
         borderWidth="1px"
       >
         <Text align={"center"} fontSize={"4xl"} fontFamily="work sans">
-          Talk-A-Tive
+          Catch-Up
         </Text>
       </Box>
       <Box bg={"white"} w={"100%"} p={3} borderRadius="1g" borderWidth="1px">

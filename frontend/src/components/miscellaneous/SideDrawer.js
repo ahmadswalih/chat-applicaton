@@ -23,6 +23,7 @@ const SideDrawer = () => {
 
   const { user } = ChatState();
   const history = useHistory();
+
   const LogoutHandler = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
@@ -71,7 +72,7 @@ const SideDrawer = () => {
                 <MenuItem>My Profile</MenuItem>
               </ProfileModal>
               <MenuDivider />
-              <MenuItem onClick={LogoutHandler()}>Logout</MenuItem>
+              <MenuItem onClick={LogoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>

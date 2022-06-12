@@ -5,7 +5,7 @@ import SideDrawer from "../components/miscellaneous/SideDrawer";
 import MyChats from "../components/MyChats";
 import ChatBox from "../components/ChatBox";
 
-const chatPage = () => {
+const ChatPage = () => {
   const { user } = ChatState();
   return (
     <div style={{ width: "100%" }}>
@@ -24,4 +24,4 @@ const chatPage = () => {
   );
 };
 
-export default chatPage;
+export default ChatPage;
